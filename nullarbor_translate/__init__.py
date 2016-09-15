@@ -4,5 +4,5 @@ __description__     = 'Transform Nullarbor reports to anything using Jinja2 temp
 __author__          = 'Anders Goncalves da Silva'
 __author_email__    = 'andersgs@gmail.com'
 __url__             = 'https://github.com/andersgs/nullarbor_translate'
-__licence__         = 'GPLv3'
+__license__         = 'GPLv3'
 __all__             = ["main", "NullarborObj", "ConfigReader"]
