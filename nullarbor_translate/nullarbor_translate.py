@@ -19,7 +19,7 @@ from ConfigReader import ConfigReader
 @click.option("--config_file", help="Path to a configuration file to obtain general parameters", default='mdu_config.yaml')
 @click.option("--nullarbor_report", help="Path to Nullarbor report folder", default='.')
 @click.option("--job_id", help='Job number', default='UNKNOWN')
-def nullarbor2json(template_file, config_file, nullarbor_report, job_id):
+def main(template_file, config_file, nullarbor_report, job_id):
     # Sorting out the config
     if config_file == 'mdu_config.yaml':
         config_file = os.path.join(pkg_resources.resource_filename(__name__, "config_file"), "mdu_config.yaml")
@@ -41,4 +41,4 @@ def nullarbor2json(template_file, config_file, nullarbor_report, job_id):
     nullarbor.render_template(template)
 
 if __name__ == '__main__':
-    nullarbor2json()
+    main()
