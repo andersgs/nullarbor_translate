@@ -67,8 +67,8 @@ can be used in a `Jinja2` template file:
 
 Additional `keywords` will be added soon.
 
-A template that outputs a `CSV` file with only the isolate id and quality would
-look like this:
+A template that outputs a `CSV` file with only the `isolate id` and `quality`
+columns of the `MLST` table would look like this:
 
 ```
 Isolate, Quality
