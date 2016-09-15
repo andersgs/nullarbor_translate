@@ -72,7 +72,7 @@ look like this:
 
 ```
 Isolate, Quality
-{% for isolate in mlst_isolates %} {{ isolate.id }}, {{ isolate.quality}} {% endfor %}
+{% for isolate in mlst_isolates %} {{ isolate.id }}, {{ isolate.quality }} {% endfor %}
 ```
 ### A YAML configuration file
 
@@ -113,3 +113,7 @@ nullarbor_translate --template /path/to/my/template.json > nullarbor.json
 ```
 nullarbor_translate --help
 ```
+
+## References
+
+Seemann, Torsten (2016). Nullarbor: Reads to report for public health and clinical microbiology. url: [https://github.com/tseemann/nullarbor](https://github.com/tseemann/nullarbor)
