@@ -1,0 +1,15 @@
+{"Job":"{{ job_id }}",
+                "SOP": {"SOPId":"{{ mlst_sop_id }}",
+                                "ResultNames":
+                                ["{{ mlst_header|join('\",\"') }}"],
+                                "IsolateResults": [{% for isolate in mlst_isolates %}{% if loop.last %}
+                                        {"Isolate":"{{ isolate.id }}",
+                                        "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
+                                        }
+                                        {% else %}
+                                        {"Isolate":"{{ isolate.id }}",
+                                        "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
+                                        },{% endif %}{% endfor %}
+                                ]
+                }
+}
