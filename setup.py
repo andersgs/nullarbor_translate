@@ -32,7 +32,7 @@ setup(name='nullarbor_translate',
       test_suite='nose.collector',
       tests_require=[],
       entry_points={
-          'console_scripts': ['nullarbor_translate=nullarbor_translate.main:main'],
+          'console_scripts': ['nullarbor_translate=nullarbor_translate.nullarbor_translate:main'],
       },
       include_package_data=True,
       zip_safe=False)
