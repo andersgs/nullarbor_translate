@@ -18,8 +18,8 @@ be combined in any template to generate any time of file.
 
 ## Dependencies
 
-Click
-Jinja2
+* Click
+* Jinja2
 
 ## Inputs
 
@@ -34,17 +34,17 @@ The program takes three mandatory inputs:
 The program will create the following `keywords` that can be used in a Jinja2
 template file:
 
-* job_id --- a `string` with a job ID number (at MDU we use it to track jobs)
-* mlst_sop_id --- a `string` the SOP number for MLST
-* mlst_header --- a `list` with the headers of the MLST table:
+* `job_id` --- a `string` with a job ID number (at MDU we use it to track jobs)
+* `mlst_sop_id` --- a `string` the SOP number for MLST
+* `mlst_header` --- a `list` with the headers of the MLST table:
     - ['Scheme','SequenceType','Allele', 'Allele', 'Quality']
-* mlst_isolates --- a `list` of `dictionaries`, each `dictionary` represents
+* `mlst_isolates` --- a `list` of `dictionaries`, each `dictionary` represents
     the results for a single isolate:
     - Each dictionary has the following keys:
-        * id --- the isolate ID
-        * scheme --- the identified MLST scheme
-        * alleles --- a `list` of alleles
-        * quality --- a `string` (PASSED|FAILED|?|UNKNOWN)
+        * `id` --- the isolate ID
+        * `scheme` --- the identified MLST scheme
+        * `alleles` --- a `list` of alleles
+        * `quality` --- a `string` (PASSED|FAILED|?|UNKNOWN)
 
 Additional `keywords` will be added soon.
 
