@@ -1,5 +1,6 @@
 from setuptools import setup
 
+import nullarbor_translate
 
 def readme():
     with open('README.md') as f:
@@ -7,33 +8,31 @@ def readme():
 
 
 setup(name='nullarbor_translate',
-      version= nullarbor_translate.__version__,
+      version=nullarbor_translate.__version__,
       description=nullarbor_translate.__description__,
       long_description=readme(),
       classifiers=[
         'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: GPLv2',
+        'License :: OSI Approved :: GPLv3',
         'Programming Language :: Python :: 2.7',
         'Topic :: Scientific/Engineering :: Bio-Informatics',
         'Topic :: Scientific/Engineering :: Medical Science Apps.',
         'Intended Audience :: Science/Research',
       ],
-      keywords='microbial genomics Neisseria sequence typing',
-      url='https://github.com/MDU-PHL/ngmaster',
-      author='Jason Kwong',
-      author_email='kwongj@gmail.com',
-      license='GPLv2',
-      packages=['ngmaster'],
+      keywords='microbial genomics Nullarbor',
+      url=nullarbor_translate.__url__,
+      author=nullarbor_translate.__author__,
+      author_email=nullarbor_translate.__author_email__,
+      license=nullarbor_translate.__license__,
+      packages=['nullarbor_translate'],
       install_requires=[
-          'argparse',
-          'BioPython',
-          'bs4',
-          'requests',
+          'click',
+          'jinja2',
       ],
       test_suite='nose.collector',
       tests_require=[],
       entry_points={
-          'console_scripts': ['ngmaster=ngmaster.ngmaster:main'],
+          'console_scripts': ['nullarbor_translate=nullarbor_translate.main:main'],
       },
       include_package_data=True,
       zip_safe=False)

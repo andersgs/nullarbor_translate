@@ -1,8 +1,8 @@
 __name__            = 'nullarbor2json'
 __version__         = '0.0.1'
-__description__     = 'Transform Nullarbor reports to JSON using Jinja2 templates'
-__author__          = 'MDU PHL'
+__description__     = 'Transform Nullarbor reports to anything using Jinja2 templates'
+__author__          = 'Anders Goncalves da Silva'
 __author_email__    = 'andersgs@gmail.com'
-__url__             = ''
-__licence__         = 'GPLv2'
+__url__             = 'https://github.com/andersgs/nullarbor_translate'
+__licence__         = 'GPLv3'
 __all__             = ["main", "NullarborObj", "ConfigReader"]
