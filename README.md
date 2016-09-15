@@ -81,3 +81,16 @@ nullarbor_files:
     mlst: mlst.csv
 ```
 Feel free to use it if you are **NOT** interested in SOP IDs.
+
+## Example
+
+```
+cd /path/to/nullarbor/report
+nullarbor_translate --template /path/to/my/template.json > nullarbor.json
+```
+
+## Getting help
+
+```
+nullarbor_translate --help
+```
