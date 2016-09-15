@@ -1,8 +1,8 @@
 # Make Nullarbor reports machine readable
 
-Nullarbor reports come out in beautiful HTML. But, sometimes we want them in
-a format that we can easily load into a database, an `R` session, or pass
-on to some other script.
+[Nullarbor](https://github.com/tseemann/nullarbor) reports come out in beautiful HTML.
+But, sometimes we want them in a format that we can easily load into a database,
+an `R` session, or pass on to some other script.
 
 In this program, we parse the information contained in a Nullarbor report
 folder into a few keywords, which can then be formatted into anything by using
@@ -10,16 +10,30 @@ a `Jinja2` template.
 
 In our own pipeline, we use it to translate the report into a `JSON` format
 using a schema appropriate for our own LIMs system. But, the keywords could
-be combined in any template to generate any time of file.
+be combined in any template to generate any type of file.
 
 ## Installation
 
-`pip install ...`
+The easiest way of installing `nullarbor_translate` is using `pip`:
+
+`pip install git+https://github.com/andersgs/nullarbor_translate.git`
+
+Use the `--user` option to install locally:
+
+`pip install --user git+https://github.com/andersgs/nullarbor_translate.git`
+
+Use the `--install-option` to install the script in a particular location:
+
+`pip install --install-option="--install-scripts=$HOME/bin" --user git+https://github.com/andersgs/nullarbor_translate.git`
+
+Once installed type the following:
+
+`nullarbor_translate --help`
 
 ## Dependencies
 
-* Click
-* Jinja2
+* [Click](http://click.pocoo.org/5/)
+* [Jinja2](http://jinja.pocoo.org/docs/dev/)
 
 ## Inputs
 
@@ -31,8 +45,13 @@ The program takes three mandatory inputs:
 
 ### The Jinja2 template file keywords
 
-The program will create the following `keywords` that can be used in a Jinja2
-template file:
+`Jinja2` provides for a very simple and powerful templating language. Read the
+[Template Designer Documentation](http://jinja.pocoo.org/docs/dev/templates/) to
+see what you can do.
+
+What `nullarbor_translate` does is read the `Nullarbor` `reports` folder creating
+`keywords` that you can use in your template. For now, the following `keywords`
+can be used in a `Jinja2` template file:
 
 * `job_id` --- a `string` with a job ID number (at MDU we use it to track jobs)
 * `mlst_sop_id` --- a `string` the SOP number for MLST
