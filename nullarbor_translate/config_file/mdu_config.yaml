@@ -1,5 +1,10 @@
-sopid:
-    mlst: MMS109
-
 nullarbor_files:
     mlst: mlst.csv
+    resistome: resistome.csv
+    newick: tree.newick
+    core_aln: core.aln
+
+sopid:
+    mlst: MMS109
+    resistome: MMS118
+    phylogenetics: MMS108

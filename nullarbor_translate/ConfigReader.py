@@ -13,7 +13,9 @@ class ConfigReader:
         self.cfg = yaml.load(fi)
         fi.close()
     def add_sops(self):
-        sops = self.cfg['sopid']
-        self.mlst_sop_id = sops['mlst']
+        try:
+            sops = self.cfg['sopid']
+        except:
+            sops = {}
     def add_filenames(self):
         self.filenames = self.cfg['nullarbor_files']

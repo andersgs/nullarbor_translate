@@ -1,8 +1,8 @@
 {"Job":"{{ job_id }}",
-                "SOP": {"SOPId":"{{ mlst_sop_id }}",
+                "SOP": {"SOPId":"{{ sop_id.mlst }}",
                                 "ResultNames":
                                 ["{{ mlst_header|join('\",\"') }}"],
-                                "IsolateResults": [{% for isolate in mlst_isolates %}{% if loop.last %}
+                                "IsolateResults": [{% for isolate in mlst %}{% if loop.last %}
                                         {"Isolate":"{{ isolate.id }}",
                                         "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
                                         }
@@ -11,5 +11,16 @@
                                         "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
                                         },{% endif %}{% endfor %}
                                 ]
-                }
+                },
+                "SOP": {"SOPId":"{{ sop_id.resistome }}",
+                                "IsolateResults":[{% for isolate in resistome %}{% if loop.last %}
+                                    {"Isolate":"{{ isolate.id }}",
+                                    "Results": ["{{ isolate.resuls|join('\",\"')}}"]
+                                    }
+                                    {% else %}
+                                    {"Isolate":"{{ isolate.id }}",
+                                    "Results": ["{{ isolate.resuls|join('\",\"')}}"]
+                                    }, {% endif %}{% endfor %}
+                                ]
+                },
 }
