@@ -6,7 +6,6 @@ import yaml
 
 class ConfigReader:
     def __init__(self):
-        self.mlst_sop_id = ''
         self.filenames = {}
     def read_config(self, configfile):
         fi = open(configfile)
@@ -14,8 +13,8 @@ class ConfigReader:
         fi.close()
     def add_sops(self):
         try:
-            sops = self.cfg['sopid']
+            self.sops = self.cfg['sopid']
         except:
-            sops = {}
+            self.sops = {}
     def add_filenames(self):
         self.filenames = self.cfg['nullarbor_files']
