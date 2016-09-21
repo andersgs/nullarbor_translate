@@ -68,7 +68,7 @@ class NullarborObj:
         resistome_res.colums = clean_cols
         # parse the resistome
         self.resistome_isolates = [self.__parse_resistome__(i, resistome_res.loc[i]) for i in resistome_res.index.values]
-    def add_sop( self, sop_ids ):
+    def add_sops( self, sop_ids ):
         self.sop_id = sop_ids
     def render_template(self, template):
         tmp = template.render(job_id = self.job_id,
