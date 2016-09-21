@@ -1,5 +1,5 @@
 __name__            = 'nullarbor2json'
-__version__         = '0.0.1'
+__version__         = '0.0.2'
 __description__     = 'Transform Nullarbor reports to anything using Jinja2 templates'
 __author__          = 'Anders Goncalves da Silva'
 __author_email__    = 'andersgs@gmail.com'
