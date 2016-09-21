@@ -37,7 +37,9 @@ def main(template_file, config_file, nullarbor_report, job_id):
     if nullarbor_report == '.':
         nullarbor_report = os.getcwd()
     nullarbor = NullarborObj(nullarbor_report, job_id)
-    nullarbor.add_mlst(config.filenames['mlst'], config.mlst_sop_id)
+    nullarbor.add_mlst(config.filenames['mlst'])
+    nullarbor.add_resistome(config.filenames['resistome'])
+    nullarbor.add_sops(config.sop)
     nullarbor.render_template(template)
 
 if __name__ == '__main__':
