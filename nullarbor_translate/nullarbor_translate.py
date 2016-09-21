@@ -39,6 +39,8 @@ def main(template_file, config_file, nullarbor_report, job_id):
     nullarbor = NullarborObj(nullarbor_report, job_id)
     nullarbor.add_mlst(config.filenames['mlst'])
     nullarbor.add_resistome(config.filenames['resistome'])
+    nullarbor.add_newick(config.filenames['newick'])
+    nullabor.add_core_aln(config.filenames['core_aln'])
     nullarbor.add_sops(config.sops)
     nullarbor.render_template(template)
 
