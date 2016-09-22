@@ -74,7 +74,11 @@ can be used in a `Jinja2` template file:
         * `results` --- a `list` of genes found (empty if no matches were found)
         * `partials` --- a `list` of genes with partial matches (empty if no partials were found)
 * `newick` --- a `string` with the Newick tree
-* `core_aln` --- a `dictionary`, with `key:value` being the `isolate_id:sequence`
+* `core_aln` --- a `list` of `dictionaries`, each `dictionary` represents the
+    results for a single isolate:
+    - Each dictionary has the following keys:
+        * `id` --- the isolate ID
+        * `seq` --- the sequence 
 
 Additional `keywords` will be added soon.
 
