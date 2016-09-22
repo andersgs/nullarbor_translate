@@ -55,11 +55,14 @@ class NullarborObj:
             self.newick += l.strip()
         fi.close()
     def add_core_aln( self, core_aln_file ):
-        self.core_aln = {}
+        self.core_aln = []
         fi = open( core_aln_file, 'r' )
         seqs = SeqIO.parse( fi, 'fasta' )
         for s in seqs:
-            self.core_aln[s.id] = str(s.seq)
+            tmp = {}
+            tmp["id"] = s.id
+            tmp["seq"] = str(s.seq)
+            self.core_aln.append(tmp)
         fi.close()
     def add_resistome( self, resistome_file ):
         resistome_res = self.__read_csv__( resistome_file )
