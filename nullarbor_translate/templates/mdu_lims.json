@@ -5,8 +5,7 @@
                                 "IsolateResults": [{% for isolate in mlst %}{% if loop.last %}
                                         {"Isolate":"{{ isolate.id }}",
                                         "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
-                                        }
-                                        {% else %}
+                                        }{% else %}
                                         {"Isolate":"{{ isolate.id }}",
                                         "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
                                         },{% endif %}{% endfor %}
@@ -15,12 +14,18 @@
                 "SOP": {"SOPId":"{{ sop_id.resistome }}",
                                 "IsolateResults":[{% for isolate in resistome %}{% if loop.last %}
                                     {"Isolate":"{{ isolate.id }}",
-                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}]
-                                    }
-                                    {% else %}
+                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}{% if isolate.partials|length > 0 %},"{{ isolate.partials|join('*TDB*\",\"') }}*TDB*"{% endif %}]
+                                    }{% else %}
                                     {"Isolate":"{{ isolate.id }}",
-                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}]
+                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}{% if isolate.partials|length > 0 %},"{{ isolate.partials|join('*TDB*\",\"') }}*TDB*"{% endif %}]
                                     }, {% endif %}{% endfor %}
                                 ]
                 },
+                "SOP": {"SOPId":"{{ sop_id.phylogenetics }}",
+                        "CoreAlignment": "{% for isolate in core_aln %}
+                        >{{ isolate.id }}
+                        {{ isolate.seq | truncate(100, end = '') | wordwrap(60) | indent(24) }}{% endfor %}
+                        ",
+                        "TreeNewick":"{{ tree }}"
+                }
 }
