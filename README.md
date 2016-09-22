@@ -54,16 +54,27 @@ What `nullarbor_translate` does is read the `Nullarbor` `reports` folder creatin
 can be used in a `Jinja2` template file:
 
 * `job_id` --- a `string` with a job ID number (at MDU we use it to track jobs)
-* `mlst_sop_id` --- a `string` the SOP number for MLST
+* `sop_id` --- a `dictionary` with SOP numbers defined in the `config file`.
+    Here, the `key:value` pairs will be defined in the `config file`, and be
+    available to the user as entered in the `config file`
 * `mlst_header` --- a `list` with the headers of the MLST table:
     - ['Scheme','SequenceType','Allele', 'Allele', 'Quality']
-* `mlst_isolates` --- a `list` of `dictionaries`, each `dictionary` represents
+* `mlst` --- a `list` of `dictionaries`, each `dictionary` represents
     the results for a single isolate:
     - Each dictionary has the following keys:
         * `id` --- the isolate ID
         * `scheme` --- the identified MLST scheme
         * `alleles` --- a `list` of alleles
         * `quality` --- a `string` (PASSED|FAILED|?|UNKNOWN)
+* `resistome` --- a `list` of `dictionaries`, each `dictionary` represents
+    the results for a single isolate:
+    - Each dictionary has the following keys:
+        * `id` --- the isolate ID
+        * `n_genes` --- the number of AMR genes found
+        * `results` --- a `list` of genes found (empty if no matches were found)
+        * `partials` --- a `list` of genes with partial matches (empty if no partials were found)
+* `newick` --- a `string` with the Newick tree
+* `core_aln` --- a `dictionary`, with `key:value` being the `isolate_id:sequence`
 
 Additional `keywords` will be added soon.
 
@@ -72,34 +83,41 @@ columns of the `MLST` table would look like this:
 
 ```
 Isolate, Quality
-{% for isolate in mlst_isolates %} {{ isolate.id }}, {{ isolate.quality }} {% endfor %}
+{% for isolate in mlst %} {{ isolate.id }}, {{ isolate.quality }} {% endfor %}
 ```
 ### A YAML configuration file
 
 The goal of the configuration file is to set some parameters that would be used
-in every run. Currently, there are two sets of parameters that must be included
-in the configuration file:
+in every run. The only requirement at this stage is `nullarbor_files` section,
+which specifies the names of the `files` produces by `Nullarbor` for each
+of the results of interest:
 
-* sopid
 * nullarbor_files
 
-The `sopid` parameters refer to the IDs of individual SOPs. If not relevant to
-you, just enter them with a blank.
+An optional entry can specify the SOP IDs:
 
-The `nullarbor_files` parameters refer to the name of the output files within
-the Nullarbor `report` folder that have the data of interest. This will allow
-for future proofing, in case these files change names.
+* sopid
+
+The `sopid` parameters refer to the IDs of individual SOPs. The `keys` used here
+will be available to you in your template as `sop_id.<key>`.
 
 The current default config file looks like this:
 
 ```
+nnullarbor_files:
+    mlst: mlst.csv
+    resistome: resistome.csv
+    newick: tree.newick
+    core_aln: core.aln
+
 sopid:
     mlst: MMS109
-
-nullarbor_files:
-    mlst: mlst.csv
+    resistome: MMS118
+    phylogenetics: MMS108
 ```
-Feel free to use it if you are **NOT** interested in SOP IDs.
+
+In this `config file` the SOP ID for `mlst` can be used in the template by using
+the `keyword` `sop_id.mlst`.
 
 ## Example
 
