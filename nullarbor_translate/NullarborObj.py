@@ -65,7 +65,7 @@ class NullarborObj:
         resistome_res = self.__read_csv__( resistome_file )
         # address the issue of extra spaces in the header
         clean_cols = [h.strip() for h in resistome_res.columns.values.tolist()]
-        resistome_res.colums = clean_cols
+        resistome_res.columns = clean_cols
         # parse the resistome
         self.resistome_isolates = [self.__parse_resistome__(i, resistome_res.loc[i]) for i in resistome_res.index.values]
     def add_sops( self, sop_ids ):
