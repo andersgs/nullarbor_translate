@@ -28,6 +28,8 @@ setup(name='nullarbor_translate',
       install_requires=[
           'click',
           'jinja2',
+          'pandas',
+          'PyYAML',
       ],
       test_suite='nose.collector',
       tests_require=[],
