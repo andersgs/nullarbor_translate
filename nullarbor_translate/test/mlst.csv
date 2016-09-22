@@ -1,0 +1,11 @@
+Isolate,Scheme,SequenceType,Allele,Allele,Allele,Allele,Allele,Allele,Allele,Quality
+2999-99990,senterica,11,aroC(5),dnaN(2),hemD(3),hisD(7),purE(6),sucA(6),thrA(11),&#10004;
+2999-99991,senterica,19,aroC(10),dnaN(7),hemD(12),hisD(9),purE(5),sucA(9),thrA(2),&#10004;
+2999-99992,senterica,11,aroC(5),dnaN(2),hemD(3),hisD(7),purE(6),sucA(6),thrA(11),&#10004;
+2999-99993,senterica,50,aroC(5),dnaN(21),hemD(18),hisD(9),purE(6),sucA(12),thrA(17),&#10004;
+2999-99994,senterica,19,aroC(10),dnaN(7),hemD(12),hisD(9),purE(5),sucA(9),thrA(2),&#10004;
+2999-99995,senterica,-,aroC(41),dnaN(494),hemD(3),hisD(7),purE(5),sucA(6),thrA(10),?
+2999-99996,ecoli,-,adk(~44),fumC(~624),gyrB(~213),icd(40),mdh(~392),purA(177),recA(~338),?
+2999-99997,cfreundii,22,aspC(15),clpX(12),fadD(20),mdh(15),arcA(5),dnaG(11),lysP(17),&#10004;
+2999-99998,senterica,34,aroC(10),dnaN(19),hemD(12),hisD(9),purE(5),sucA(9),thrA(2),&#10004;
+2999-99999,senterica,11,aroC(5),dnaN(2),hemD(3),hisD(7),purE(6),sucA(6),thrA(11),&#10004;

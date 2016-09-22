@@ -1,0 +1,11 @@
+Isolate,#1 Match,%,#2 Match,%,#3 Match,%,#4 Match,%,Quality
+2999-99998,Salmonella enterica,82.45,unclassified,8.59,Escherichia coli,2.28,Edwardsiella ictaluri,0.52,&#10004;
+2999-99995,Salmonella enterica,95.44,unclassified,1.38,Salmonella phage SPN9CC,0.21,Escherichia coli,0.12,&#10004;
+2999-99994,Salmonella enterica,88.72,Escherichia coli,1.82,unclassified,1.79,Shigella boydii,0.08,&#10004;
+2999-99991,Salmonella enterica,92.54,unclassified,1.45,Salmonella phage RE-2010,0.27,Salmonella bongori,0.00,&#10004;
+2999-99996,Salmonella enterica,94.56,unclassified,1.81,Salmonella bongori,0.07,Escherichia coli,0.04,&#10004;
+2999-99993,Salmonella enterica,95.19,unclassified,1.62,Escherichia coli,0.05,Dickeya dadantii,0.05,&#10004;
+2999-99999,Salmonella enterica,95.55,unclassified,1.35,Escherichia coli,0.04,Klebsiella pneumoniae,0.02,&#10004;
+2999-99990,Salmonella enterica,92.07,Escherichia coli,2.64,unclassified,1.31,Klebsiella oxytoca,0.11,&#10004;
+2999-99992,Salmonella enterica,87.89,unclassified,5.07,Escherichia coli,0.96,Salmonella bongori,0.00,&#10004;
+2999-99997,unclassified,71.48,Salmonella enterica,3.28,Citrobacter koseri,1.54,Escherichia coli,1.42,&#10008;
