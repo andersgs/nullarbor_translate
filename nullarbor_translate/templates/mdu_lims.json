@@ -15,11 +15,11 @@
                 "SOP": {"SOPId":"{{ sop_id.resistome }}",
                                 "IsolateResults":[{% for isolate in resistome %}{% if loop.last %}
                                     {"Isolate":"{{ isolate.id }}",
-                                    "Results": ["{{ isolate.resuls|join('\",\"')}}"]
+                                    "Results": ["{{ isolate.results|join('\",\"')}}"]
                                     }
                                     {% else %}
                                     {"Isolate":"{{ isolate.id }}",
-                                    "Results": ["{{ isolate.resuls|join('\",\"')}}"]
+                                    "Results": ["{{ isolate.results|join('\",\"')}}"]
                                     }, {% endif %}{% endfor %}
                                 ]
                 },
