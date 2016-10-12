@@ -1,4 +1,4 @@
 *egg*
 *.pyc
 .DS*
-lims.json
+*.json

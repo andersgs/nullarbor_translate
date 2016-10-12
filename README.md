@@ -34,6 +34,8 @@ Once installed type the following:
 
 * [Click](http://click.pocoo.org/5/)
 * [Jinja2](http://jinja.pocoo.org/docs/dev/)
+* [Pandas](http://pandas.pydata.org/)
+* [PyYAML](http://pyyaml.org/)
 
 ## Inputs
 
@@ -59,14 +61,14 @@ can be used in a `Jinja2` template file:
     available to the user as entered in the `config file`
 * `mlst_header` --- a `list` with the headers of the MLST table:
     - ['Scheme','SequenceType','Allele', 'Allele', 'Quality']
-* `mlst` --- a `list` of `dictionaries`, each `dictionary` represents
+* `mlst_isolates` --- a `list` of `dictionaries`, each `dictionary` represents
     the results for a single isolate:
     - Each dictionary has the following keys:
         * `id` --- the isolate ID
         * `scheme` --- the identified MLST scheme
         * `alleles` --- a `list` of alleles
         * `quality` --- a `string` (PASSED|FAILED|?|UNKNOWN)
-* `resistome` --- a `list` of `dictionaries`, each `dictionary` represents
+* `resistome_isolates` --- a `list` of `dictionaries`, each `dictionary` represents
     the results for a single isolate:
     - Each dictionary has the following keys:
         * `id` --- the isolate ID
@@ -78,16 +80,36 @@ can be used in a `Jinja2` template file:
     results for a single isolate:
     - Each dictionary has the following keys:
         * `id` --- the isolate ID
-        * `seq` --- the sequence 
+        * `seq` --- the sequence
+* `reference` --- a `list` of `dictionaries`, each `dictionary` represents a
+    single entry in the references `Genbank` or `FASTA` file (i.e., chromosomes,
+        and plasmids).
+        - Each dictionary has the following keys:
+            * `id` --- the accession ID for the sequence
+            * `length` --- the length of the sequence in base-pairs
+            * `description` --- A description of the sequence, as obtained from
+                the file
+* `jobinfo` --- a `dictionary` with basic job information. It has the following
+    keys:
+        - `author` --- the login of the person that executed the job
+        - `date` --- the date the job was executed
+        - `isolates` --- the number of included isolates
+        - `host` --- the host signature where in which the job was run
+        - `folder` --- the location on the server where the job was run
 
 Additional `keywords` will be added soon.
+
+The template is given an object that contains all the `keywords`. To access a
+`keyword` from the template, just type `nullarbor.<keyword>`. For instance,
+to access `mlst_isolates`, just type `nullarbor.mlst_isolates`. This will
+return an array that can be looped over.
 
 A template that outputs a `CSV` file with only the `isolate id` and `quality`
 columns of the `MLST` table would look like this:
 
 ```
 Isolate, Quality
-{% for isolate in mlst %} {{ isolate.id }}, {{ isolate.quality }} {% endfor %}
+{% for isolate in nullarbor.mlst_isolates %} {{ isolate.id }}, {{ isolate.quality }} {% endfor %}
 ```
 ### A YAML configuration file
 

@@ -1,8 +1,15 @@
-{"Job":"{{ job_id }}",
-                "SOP": {"SOPId":"{{ sop_id.mlst }}",
+{"MDU Nullarbor Report": "{{ nullarbor.jobinfo.date }}",
+    "Job":"{{ nullarbor.job_id }}",
+                "Info": {
+                        "Author": "{{ nullarbor.jobinfo.author }}",
+                        "Number of Isolates": {{ nullarbor.jobinfo.isolates }},
+                        "Host": "{{ nullarbor.jobinfo.host }}",
+                        "Folder": "{{ nullarbor.jobinfo.folder }}"
+                },
+                "SOP": {"SOPId":"{{ nullarbor.sop_id.mlst }}",
                                 "ResultNames":
-                                ["{{ mlst_header|join('\",\"') }}"],
-                                "IsolateResults": [{% for isolate in mlst %}{% if loop.last %}
+                                ["{{ nullarbor.mlst_header|join('\",\"') }}"],
+                                "IsolateResults": [{% for isolate in nullarbor.mlst_isolates %}{% if loop.last %}
                                         {"Isolate":"{{ isolate.id }}",
                                         "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
                                         }{% else %}
@@ -11,21 +18,29 @@
                                         },{% endif %}{% endfor %}
                                 ]
                 },
-                "SOP": {"SOPId":"{{ sop_id.resistome }}",
-                                "IsolateResults":[{% for isolate in resistome %}{% if loop.last %}
+                "SOP": {"SOPId":"{{ nullarbor.sop_id.resistome }}",
+                                "IsolateResults":[{% for isolate in nullarbor.resistome_isolates %}{% if loop.last %}
                                     {"Isolate":"{{ isolate.id }}",
-                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}{% if isolate.partials|length > 0 %},"{{ isolate.partials|join('*TDB*\",\"') }}*TDB*"{% endif %}]
+                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}{% if isolate.partials|length > 0 %},"{{ isolate.partials|join('*TBD*\",\"') }}*TDB*"{% endif %}]
                                     }{% else %}
                                     {"Isolate":"{{ isolate.id }}",
-                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}{% if isolate.partials|length > 0 %},"{{ isolate.partials|join('*TDB*\",\"') }}*TDB*"{% endif %}]
+                                    "Results": [{% if isolate.results|length > 0 %}"{{ isolate.results|join('\",\"')}}"{% endif %}{% if isolate.partials|length > 0 %},"{{ isolate.partials|join('*TBD*\",\"') }}*TDB*"{% endif %}]
                                     }, {% endif %}{% endfor %}
                                 ]
                 },
-                "SOP": {"SOPId":"{{ sop_id.phylogenetics }}",
-                        "CoreAlignment": "{% for isolate in core_aln %}
+                "SOP": {"SOPId":"{{ nullarbor.sop_id.phylogenetics }}",
+                        "Reference":[{% for ref in nullarbor.ref %}{% if loop.last %}
+                            {"Id":"{{ ref.id }}",
+                             "Description": "{{ ref.description }}",
+                             "Length":{{ ref.length }}} {% else %}
+                            {"Id":"{{ ref.id }}",
+                             "Description": "{{ ref.description }}",
+                             "Length":{{ ref.length }}}, {% endif %}{% endfor %}
+                        ],
+                        "CoreAlignment": "{% for isolate in nullarbor.core_aln %}
                         >{{ isolate.id }}
                         {{ isolate.seq | truncate(100, end = '') | wordwrap(60) | indent(24) }}{% endfor %}
                         ",
-                        "TreeNewick":"{{ tree }}"
+                        "TreeNewick":"{{ nullarbor.newick }}"
                 }
 }

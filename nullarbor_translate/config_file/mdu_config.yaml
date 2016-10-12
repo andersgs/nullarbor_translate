@@ -3,6 +3,8 @@ nullarbor_files:
     resistome: resistome.csv
     newick: tree.newick
     core_aln: core.aln
+    reference: reference.csv
+    jobinfo: jobinfo.csv
 
 sopid:
     mlst: MMS109

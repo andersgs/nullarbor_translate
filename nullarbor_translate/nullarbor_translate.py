@@ -41,6 +41,8 @@ def main(template_file, config_file, nullarbor_report, job_id):
     nullarbor.add_resistome(config.filenames['resistome'])
     nullarbor.add_newick(config.filenames['newick'])
     nullarbor.add_core_aln(config.filenames['core_aln'])
+    nullarbor.add_reference(config.filenames['reference'])
+    nullarbor.add_jobinfo(config.filenames['jobinfo'])
     nullarbor.add_sops(config.sops)
     nullarbor.render_template(template)
 
