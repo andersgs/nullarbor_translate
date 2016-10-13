@@ -29,7 +29,7 @@
                                 ]
                 },
                 "SOP": {"SOPId":"{{ nullarbor.sop_id.phylogenetics }}",
-                        "Reference":[{% for ref in nullarbor.ref %}{% if loop.last %}
+                        "Reference":[{% for ref in nullarbor.reference %}{% if loop.last %}
                             {"Id":"{{ ref.id }}",
                              "Description": "{{ ref.description }}",
                              "Length":{{ ref.length }}} {% else %}
