@@ -226,6 +226,7 @@ Here are the steps to do it:
     ```
     nullarbor_translate --add_filter /path/to/my_filter.py --nullarbor_report $PWD
     ```
+
 **NOTE 1**: The `filename` (`my_filter.py`) is also the name of the `function`. This
 is a convention that must be followed for currently implemented approach to work
 properly. The `function` name is the `name` of the filter to be called when
