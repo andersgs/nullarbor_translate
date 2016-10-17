@@ -13,13 +13,15 @@ import os
 
 from NullarborObj import NullarborObj
 from ConfigReader import ConfigReader
+from FilterReader import FilterReader
 
 @click.command()
 @click.option("--template_file", help="Path to a template file in Jinja2 format", default="mdu_lims.json")
 @click.option("--config_file", help="Path to a configuration file to obtain general parameters", default='mdu_config.yaml')
 @click.option("--nullarbor_report", help="Path to Nullarbor report folder", default='.')
 @click.option("--job_id", help='Job number', default='UNKNOWN')
-def main(template_file, config_file, nullarbor_report, job_id):
+@click.option("--add_filter", help="File defining a custom Jinja2 filter to use.", default = None, multiple=True)
+def main(template_file, config_file, nullarbor_report, job_id, add_filter):
     # Sorting out the config
     if config_file == 'mdu_config.yaml':
         config_file = os.path.join(pkg_resources.resource_filename(__name__, "config_file"), "mdu_config.yaml")
@@ -31,8 +33,11 @@ def main(template_file, config_file, nullarbor_report, job_id):
     if template_file == 'mdu_lims.json':
         template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(pkg_resources.resource_filename(__name__, "templates")))
     else:
-        template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(template)))
-    template = template_env.get_template(template_file)
+        template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(template_file)))
+    if add_filter != None:
+        custom_filters = FilterReader(add_filter)
+        custom_filters.add_filters(template_env)
+    template = template_env.get_template(os.path.basename(template_file))
     #Creating the NullarborObj
     if nullarbor_report == '.':
         nullarbor_report = os.getcwd()

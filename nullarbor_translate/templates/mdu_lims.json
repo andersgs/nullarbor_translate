@@ -10,10 +10,10 @@
                                 "ResultNames":
                                 ["{{ nullarbor.mlst_header|join('\",\"') }}"],
                                 "IsolateResults": [{% for isolate in nullarbor.mlst_isolates %}{% if loop.last %}
-                                        {"Isolate":"{{ isolate.id }}",
+                                        {"Isolate":"{{ isolate.id | mdu_tilde }}",
                                         "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
                                         }{% else %}
-                                        {"Isolate":"{{ isolate.id }}",
+                                        {"Isolate":"{{ isolate.id | mdu_tilde }}",
                                         "Results": ["{{ isolate.scheme }}","{{ isolate.st }}","{{ isolate.alleles|join('\",\"')}}","{{ isolate.quality }}"]
                                         },{% endif %}{% endfor %}
                                 ]

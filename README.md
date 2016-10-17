@@ -45,6 +45,22 @@ The program takes three mandatory inputs:
 2. A path to a Jinja2 template file
 3. A path to a YAML configuration file
 
+## Options
+
+```
+Usage: nullarbor_translate.py [OPTIONS]
+
+Options:
+  --template_file TEXT     Path to a template file in Jinja2 format
+  --config_file TEXT       Path to a configuration file to obtain general
+                           parameters
+  --nullarbor_report TEXT  Path to Nullarbor report folder
+  --job_id TEXT            Job number
+  --add_filter TEXT        File defining a custom Jinja2 filter to use.
+  --help                   Show this message and exit.
+
+```
+
 ### The Jinja2 template file keywords
 
 `Jinja2` provides for a very simple and powerful templating language. Read the
@@ -151,6 +167,96 @@ the `keyword` `sop_id.mlst`.
 cd /path/to/nullarbor/report
 nullarbor_translate --template /path/to/my/template.json > nullarbor.json
 ```
+
+## Jinja2 filters
+
+Jinja2 provides a number of builtin  [filters](http://jinja.pocoo.org/docs/dev/templates/#builtin-filters).
+The basic syntax is described [here](http://jinja.pocoo.org/docs/dev/templates/#filters).
+
+Filters allow you change the way keywords or `variables` in Jinja2 language
+are outputted.
+
+The basic syntax is:
+
+`{{ keyword | filter }}`
+
+The `filter` is just a function, and assumes that the first argument is the
+`keyword`, but additional arguments can be added by using parenthesis:
+
+`{{ keyword | filter(arg2, arg3, ...) }}`
+
+## `nullarbor_translate` builtin filters
+
+TO BE ADDED...
+
+## Adding custom filters API
+
+While the JInja2, and `nullarbor_translate` provide a few `builtin` filters, you
+might want to write your own. This is possible. Let us say you want to implement
+a filter called `my_filter`, that searchers for any occurrence of the word `foo`
+in a string, and substitutes with the word `bar`. So that when you write your
+template, you use it as so:
+```
+{% for keyword in items %}
+    {{ keyword | my_filter }}
+{% endfor %}
+```
+
+And, if the variable `keyword` took the following values `['apple', 'foo', 'pear']`,
+the template is parsed, the resulting file would look like this:
+
+```
+apple
+bar
+pear
+```
+
+Here are the steps to do it:
+
+1. Open a file called `my_filter.py`.
+2. In this file define a function `my_filter`:
+    ```
+        def my_filter(keyword):
+            import re
+            new_keyword = re.sub('foo', 'bar', keyword)
+            return(keyword)
+    ```
+3. Call `nullarbor_translate` with the `--add_filter` flag, and give it the
+    path to the `my_filter.py` file.
+    ```
+    nullarbor_translate --add_filter /path/to/my_filter.py --nullarbor_report $PWD
+    ```
+**NOTE 1**: The `filename` (`my_filter.py`) is also the name of the `function`. This
+is a convention that must be followed for currently implemented approach to work
+properly. The `function` name is the `name` of the filter to be called when
+writting templates.
+
+**NOTE 2**: The `import` statement was put inside the function. This will ensure
+that any necessary external modules are available to the function. If these
+need to be installed (i.e., not available from the standard `Python` module
+library, or not a dependency of `nullarbor_translate`, then **you** are
+responsible for making it available).
+
+Now, let us consider the case where we would like not only to substitute the
+word `foo` for `bar`, but we would like to set the number of times `bar` should
+be repeated. So, our `function` should take more than just a `keyword` argument.
+
+For instance, let us say we want the word bar repeated 3 times. In that case,
+our template would look like this:
+```
+{% for keyword in items %}
+    {{ keyword | my_filter(3) }}
+{% endfor %}
+```
+And, our `my_filter.py` file would look like this:
+```
+    def my_filter(keyword, reps):
+        import re
+        new_keyword = re.sub('foo', 'bar', keyword)
+        new_keyword = ' '.join([keyword]*reps)
+        return(keyword)
+```
+
 
 ## Getting help
 
