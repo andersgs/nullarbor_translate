@@ -258,6 +258,13 @@ And, our `my_filter.py` file would look like this:
         return(keyword)
 ```
 
+### What if I want to add multiple custom filters?
+
+Just call the `--add_filter` multiple times, one for each `filter` file:
+
+```
+nullarbor_translate --add_filter /path/to/my_filter1.py --add_filter /path/to/my_filter2.py --nullarbor_report $PWD
+```
 
 ## Getting help
 
